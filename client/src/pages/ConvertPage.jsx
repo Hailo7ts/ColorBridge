@@ -87,6 +87,15 @@ const ConvertPage = () => {
 	  }
 	 
 
+  //convert hex to decimal values
+  function hexToDecimal(hex){
+    let decimalVal = 0
+
+    decimalVal = parseInt(hex, 16)
+
+    return decimalVal
+  }
+
   //on submit for hex/rgb color value
   const handleSubmit = async e => {
     e.preventDefault();
@@ -110,7 +119,6 @@ const ConvertPage = () => {
 			console.log(color)
 	
 		//search brand array for color
-
 		  //console.log(paintColors[0])
 		  //if there's a color match
 	
@@ -182,7 +190,7 @@ const ConvertPage = () => {
                     </label>
 
                     <label className="label">Color Value Type
-                      <input type="textarea" name="color-code" placeholder="color code" className="input input-bordered" onChange={handleColorChange} required />
+                      <input type="textarea" name="colorCode" placeholder="color code" className="input input-bordered" onChange={handleColorChange} required />
                     </label>
 
                     <button type="submit" className="btn btn-warning" >CONVERT</button>
