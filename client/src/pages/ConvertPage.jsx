@@ -107,19 +107,26 @@ const ConvertPage = () => {
 	    .then(response => response.json())
 	    .then(data => {
         console.log(data)
-	    })
+        let colorBook = data
 
-      .catch(err => console.log(`Error in fetch: ${err}`))
-    
-   
-
- 
-	  //convert color to be rgb
+        //convert color to be rgb
 			color.hex = getRGB(color.colorCode)
 			console.log(color)
 	
 		//search brand array for color
-		  //console.log(paintColors[0])
+    colorBook.forEach(color =>{
+      //console.log(paintColors[0])
+
+      //check if brand uses hex
+      if(!color.hex.startsWith('#')){
+        console.log(color.hex)
+      }else{
+        console.log('rbg')
+      }
+    })
+		  
+
+
 		  //if there's a color match
 	
 			//return match
@@ -130,6 +137,15 @@ const ConvertPage = () => {
 	
 			//return closest match
     
+	    })
+
+      .catch(err => console.log(`Error in fetch: ${err}`))
+    
+   
+
+      
+    
+	  
 
   };
 
