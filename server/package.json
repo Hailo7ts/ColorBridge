@@ -6,9 +6,13 @@
   "author": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "NODE_ENV=development nodemon server/server.js"
+    "client:build": "npm run build --workspace=client",
+    "client:dev": "npm start --workspace=client",
+    "client:start": "npm start --workspace=client",
+    "dev": "concurrently \"npm:client:dev\" \"npm:server:dev\"",
+    "server:start": "npm run start --workspace=server",
+    "start": "npm run client:build && npm run server:start",
+    "start-client": "cd client && npm start"
   },
   "type": "module",
   "dependencies": {
