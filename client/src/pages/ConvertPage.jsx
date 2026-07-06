@@ -19,6 +19,10 @@ const ConvertPage = () => {
   //initialize state to color type selected default/initial -> hex
     const [colorType, setColorType] = useState("hex");
 
+  //initialize state to brand array default/initial -> empty array
+    const [brandArray, setBrandArray] = useState([]);
+  
+
   //set values of color to input values
   const handleColorChange = e => {
     setColor({ ...color, [e.target.name]: e.target.value });
@@ -37,54 +41,22 @@ const ConvertPage = () => {
   };
 
   //function to convert hex to rgb 
-  function getRGB(color){
-		console.log(color)
-	
-		/*let hex = color
-		let r,
-			g,
-			b =''
-		//check if hex property starts with a '#'
-		//if hex starts with '#' start convert
-		if(hex.startsWith('#')){
-		  //remove '#'
-		  hex.replace('#', '')
-		  //convert r g and b
-		  r = parseInt(hex.substring(0,2), 16)
-		  g = parseInt(hex.substring(2,4), 16)
-		  b = parseInt(hex.substring(4,6), 16)
-		}//else extract r g and b
-		else{
-		  //slice starts at 4 and ends -2
-		  hex = hex.slice(4, -2)
-		  //split at the ','
-		  hex.split(',')
-		  //assign r g and b
-		  r = hex[0]
-		  g = hex[1]
-		  b = hex[2]
-		}
-		  
-		//return converted rgb
-		return [r, g, b]*/
-
-		 let r = 0, g = 0, b = 0;
-
-  		// 3 digits
-  		if (color.length == 4) {
-  		  r = "0x" + color[1] + color[1];
-  		  g = "0x" + color[2] + color[2];
-  		  b = "0x" + color[3] + color[3];
+  function getRGB(hex){
 		
-  		// 6 digits
-  		} else if (color.length == 7) {
-  		  r = "0x" + color[1] + color[2];
-  		  g = "0x" + color[3] + color[4];
-  		  b = "0x" + color[5] + color[6];
-  		}
-	
-  		return "rgb("+ +r + "," + +g + "," + +b + ")";
-	  }
+    let rgb = {
+      r: 0,
+      g: 0,
+      b: 0  
+    }
+		
+    const cleaned = hex.replace(/^#/, '');
+    
+    rgb.r = parseInt(cleaned.substring(0, 2), 16);
+    rgb.g = parseInt(cleaned.substring(2, 4), 16);
+    rgb.b = parseInt(cleaned.substring(4, 6), 16);
+    
+    return rgb;
+	}
 	 
 
   //convert hex to decimal values
@@ -94,6 +66,32 @@ const ConvertPage = () => {
     decimalVal = parseInt(hex, 16)
 
     return decimalVal
+  }
+
+  //3d euclidean distance function to find closest match
+  function euclideanDistance(color1, brandArray){
+    let targetColor = color1
+    let minDistance = Infinity
+    let closestColor = null
+
+    //loop through brand arrays rgb values
+    for (const colorHex of brandArray){
+      let currentColor = colorHex
+
+      //euclidean distance formula to find closest match without using sqrt to save processing time
+      let distance = 
+           Math.pow((targetColor.r - currentColor.r), 2) +
+           Math.pow((targetColor.g - currentColor.g), 2) +
+           Math.pow((targetColor.b - currentColor.b), 2)
+      
+      //compare distance to minDistance if less than minDistance set minDistance to distance and closestColor to currentColor
+      if(distance < minDistance){
+        minDistance = distance
+        closestColor = currentColor
+      }
+    }
+    
+    return closestColor
   }
 
   //on submit for hex/rgb color value
@@ -108,22 +106,29 @@ const ConvertPage = () => {
 	    .then(data => {
         console.log(data)
         let colorBook = data
-
+        let rgbConvertedColor = ''
         //convert color to be rgb
-			color.hex = getRGB(color.colorCode)
-			console.log(color)
-	
-		//search brand array for color
-    colorBook.forEach(color =>{
-      //console.log(paintColors[0])
+			  rgbConvertedColor = getRGB(color.colorCode)
+			 
 
-      //check if brand uses hex
-      if(!color.hex.startsWith('#')){
-        console.log(color.hex)
-      }else{
-        console.log('rbg')
-      }
-    })
+      //check if brand uses hex if it does convert to rgb
+      if(colorBook[0].hex.startsWith('#')){
+        colorBook.map(colorBookColor => {
+          
+          //convert color from hex to rgb add to brand array
+          let convertedColor = getRGB(colorBookColor.hex)
+          colorBookColor['rgb'] = convertedColor
+          
+          //add to brand array
+          brandArray.push(colorBookColor)
+          
+        })}
+
+      console.log(brandArray)
+
+      //call 3d euclidean distance function to find closest match
+      let closestMatch = euclideanDistance(rgbConvertedColor, brandArray)
+      console.log(closestMatch)
 		  
 
 
