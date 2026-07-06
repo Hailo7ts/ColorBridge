@@ -38,7 +38,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center">
-        <a className="text-[#e4654f] btn btn-ghost text-xl">PinCushion</a>
+        <a className="text-[#e4654f] btn btn-ghost text-xl">ColorBridge</a>
       </div>
       
       <div className="navbar-end mr-[1rem]">

@@ -6,14 +6,16 @@
   "author": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server/server.js",
-    "start": "node server/server.js"
+    "dev": "node server.js",
+    "start": "node server.js"
   },
   "type": "module",
   "dependencies": {
     "colornerd": "^2.4.11",
+    "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "helmet": "^8.2.0",
     "mongoose": "^8.19.2"
   },
   "devDependencies": {
