@@ -59,31 +59,24 @@ const ConvertPage = () => {
 	}
 	 
 
-  //convert hex to decimal values
-  function hexToDecimal(hex){
-    let decimalVal = 0
-
-    decimalVal = parseInt(hex, 16)
-
-    return decimalVal
-  }
-
   //3d euclidean distance function to find closest match
-  function euclideanDistance(color1, brandArray){
+  function euclideanDistance(color1, arrOfBrands){
     let targetColor = color1
     let minDistance = Infinity
     let closestColor = null
 
     //loop through brand arrays rgb values
-    for (const colorHex of brandArray){
+    for (const colorHex of arrOfBrands){
+      //console.log('Processing color:', colorHex)
       let currentColor = colorHex
 
       //euclidean distance formula to find closest match without using sqrt to save processing time
       let distance = 
-           Math.pow((targetColor.r - currentColor.r), 2) +
-           Math.pow((targetColor.g - currentColor.g), 2) +
-           Math.pow((targetColor.b - currentColor.b), 2)
+           Math.pow((targetColor.r - currentColor.rgb.r), 2) +
+           Math.pow((targetColor.g - currentColor.rgb.g), 2) +
+           Math.pow((targetColor.b - currentColor.rgb.b), 2)
       
+    
       //compare distance to minDistance if less than minDistance set minDistance to distance and closestColor to currentColor
       if(distance < minDistance){
         minDistance = distance
@@ -129,26 +122,13 @@ const ConvertPage = () => {
       //call 3d euclidean distance function to find closest match
       let closestMatch = euclideanDistance(rgbConvertedColor, brandArray)
       console.log(closestMatch)
-		  
 
-
-		  //if there's a color match
-	
-			//return match
-	
-		  //if there isn't a match find the closest match
-	
-			//call match conversion function
-	
-			//return closest match
     
 	    })
 
       .catch(err => console.log(`Error in fetch: ${err}`))
     
-   
-
-      
+  
     
 	  
 

@@ -4,6 +4,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors";
 import helmet from "helmet";
+import dns from 'dns';
+
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 import { connectDB } from "./config/db.js";
 import postRoutes from "./routes/postRoutes.js";
