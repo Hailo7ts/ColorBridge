@@ -26,8 +26,8 @@ const HomePage = () => {
 			      </p>
 			      <div className="card-actions justify-center">
 				  	<Link  to='/convert' className="bg-[#ff9d42] border-[#ff9d42] btn btn-secondary">Convert Color</Link>
-				  	<button href="/" className="bg-[#19a28d] border-[#ff9d42] btn btn-secondary">Build a Pallete</button>
-				  	<button href="/" className="bg-[#ffc610] border-[#ff9d42] btn btn-secondary">Color Analysis</button>
+				  	{/*<button href="/" className="bg-[#19a28d] border-[#ff9d42] btn btn-secondary">Build a Pallete</button>
+				  	<button href="/" className="bg-[#ffc610] border-[#ff9d42] btn btn-secondary">Color Analysis</button>*/}
 				  </div>
 			    </div>
 			  </div>

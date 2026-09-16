@@ -122,14 +122,17 @@ const ConvertPage = () => {
           console.log(rgbConvertedColor)
 
       
+          //loop through brand array and convert hex to rgb and add to brand array
           colorBook.map(colorBookColor => {
           
             //convert color from hex to rgb add to brand array
             let convertedColor = getRGB(colorBookColor.hex)
             
+            //add rgb to colorBookColor object
             colorBookColor['rgb'] = {r: convertedColor.r, g: convertedColor.g, b: convertedColor.b}
-          console.log(colorBookColor.rgb)
-            //add to brand array
+            //console.log(colorBookColor.rgb)
+
+            //add colorBookColor object to brand array
             brandArray.push(colorBookColor)
           
           })
@@ -141,23 +144,28 @@ const ConvertPage = () => {
           console.log(closestMatch)
 
     
-	    } else{        
+	    } 
+      //if brand uses rgb then add to brand array
+      else{        
 
+        //loop through colorBook
         colorBook.map(colorBookColor => {
+          //add rgb to colorBookColor object
           colorBookColor['rgb'] = {r: colorBookColor.hex.r, g: colorBookColor.hex.g, b: colorBookColor.hex.b}
-            //add to brand array
-            brandArray.push(colorBookColor)
+            
+          //add to brand array
+          brandArray.push(colorBookColor)
           
-          })
+        })
 
-         let targetColor = {}
+          //targetColor = {}
           //convert color to be rgb
-			    targetColor = getRGB(color.colorCode)
+			    let rgbConvertedColor = getRGB(color.colorCode)
 
-          console.log(targetColor)
+          console.log(rgbConvertedColor)
 
           //call 3d euclidean distance function to find closest match
-          let closestMatch = euclideanDistance(targetColor, brandArray)
+          let closestMatch = euclideanDistance(rgbConvertedColor, brandArray)
           console.log(closestMatch)
 
         }
@@ -192,12 +200,12 @@ const ConvertPage = () => {
                 <div className="card-body">
                   <form onSubmit={handleSubmit}>
                     {/* HEX or RGB */}
-                    <label className="label">Color Value Type
+                    {/*<label className="label">Color Value Type
                       <select required name="select-color-value-type" defaultValue="hex" onChange={handleColorTypeChange}>
                         <option className="hex" value="hex">HEX</option>
                         <option className="rgb" value="rgb">RGB</option>
                       </select>   
-                    </label>             
+                    </label>      */}       
 
                     {/* Paint Brands */}
                     <label className="label">Brand Color
@@ -222,7 +230,7 @@ const ConvertPage = () => {
                       <option value="sherwin-williams">Sherwin Williams</option>
                       <option value="toyo">toyo</option>
                       <option value="trumatch">trumatch</option>
-                      <option value="valspar">Valspar</option>
+                      {/*<option value="valspar">Valspar</option>*/}
                       <option value="vista">vista</option>
                       </select>
                     </label>
