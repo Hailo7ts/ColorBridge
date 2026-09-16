@@ -14,7 +14,7 @@ const ConvertPage = () => {
   });
 
   //initialize state to brand selected default/initial -> valspar
-    const [brand, setBrand] = useState("valspar");
+    const [brand, setBrand] = useState("avery");
 
   //initialize state to color type selected default/initial -> hex
     const [colorType, setColorType] = useState("hex");
@@ -104,6 +104,9 @@ const ConvertPage = () => {
   //on submit for hex/rgb color value
   const handleSubmit = async e => {
     e.preventDefault();
+
+    //update color hex value to input for ui display
+    setColor({ ...color, hex: color.colorCode });
     
     //fetch brand selected and retrieve paint colors
     let url = `https://jpederson.com/colornerd/json/${brand}.json` 
@@ -143,7 +146,8 @@ const ConvertPage = () => {
           let closestMatch = euclideanDistance(rgbConvertedColor, brandArray)
           console.log(closestMatch)
 
-    
+          
+    console.log('Color:', color)
 	    } 
       //if brand uses rgb then add to brand array
       else{        
@@ -192,12 +196,36 @@ const ConvertPage = () => {
               </p>
             </div>
           </div>
-          
+
+          {/* Display Converted Color */}
+        <div className="flex justify-evenly mt-10 mb-10"> 
+          {/*if color hex empty then display default card color*/}
+          {color.hex === "" &&
+              <div className="card lg:card-side w-1/3 bg-base-100 bg-[#a84d69] shadow-sm justify-center">
+                <div className="card-body">
+                  <h2 className="card-title">New album is released!</h2>
+                  <p>Click the button to listen on Spotiwhy app.</p>
+                </div>
+              </div>
+          }
+
+          {/*if color hex NOT empty then display input color info forcard color*/}
+          {color.hex != "" &&
+          <div className="card lg:card-side w-1/3 bg-base-100  shadow-sm justify-center"
+          style={{ backgroundColor: color.hex }}>
+                <div className="card-body">
+                  <h2 className="card-title">My Color!</h2>
+                  <p>{color.hex}</p>
+                </div>
+              </div>
+          }
+        </div>
+
         {/* User Form Inputs */}
           <div className="flex justify-evenly">           
-            <div className="card lg:card-side w-1/3 shadow-sm justify-center">           
-              <div className="card bg-[#a84d69] w-full max-w-sm shrink-0 shadow-2xl">
-                <div className="card-body">
+            <div className="card lg:card-side w-1/3 shadow-sm justify-center card bg-[#a84d69]">       
+              <div className="card-body">
+                  
                   <form onSubmit={handleSubmit}>
                     {/* HEX or RGB */}
                     {/*<label className="label">Color Value Type
@@ -209,7 +237,7 @@ const ConvertPage = () => {
 
                     {/* Paint Brands */}
                     <label className="label">Brand Color
-                      <select required name="select-brand" defaultValue="valspar" onChange={handleBrandChange}>
+                      <select required name="select-brand" defaultValue="avery" onChange={handleBrandChange}>
                       <option value="avery">avery</option>
                       <option value="behr">behr</option>
                       <option value="benjamin-moore">benjamin-moore</option>
@@ -253,7 +281,6 @@ const ConvertPage = () => {
                     <button type="submit" className="btn btn-warning" >CONVERT</button>
                   </form>
                 </div>
-              </div>
             </div>
           </div>
              
