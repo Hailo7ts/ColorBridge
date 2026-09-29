@@ -1,0 +1,27 @@
+{
+  "name": "ColorBridge",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "main": "server.js",
+  "scripts": {
+    "install-client": "npm install --prefix client",
+    "install-server": "npm install --prefix server",
+    "build-client": "npm run build --prefix client",
+    "build": "npm run install-client && npm run build-client && npm run install-server",
+    "start": "node server/server.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dns": "^0.2.2",
+    "dotenv": "^17.4.2",
+    "express": "^5.1.0",
+    "helmet": "^8.2.0",
+    "mongoose": "^8.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

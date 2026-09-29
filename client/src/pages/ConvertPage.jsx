@@ -203,8 +203,8 @@ const ConvertPage = () => {
           {color.hex === "" &&
               <div className="card lg:card-side w-1/3 bg-base-100 bg-[#a84d69] shadow-sm justify-center">
                 <div className="card-body">
-                  <h2 className="card-title">New album is released!</h2>
-                  <p>Click the button to listen on Spotiwhy app.</p>
+                  <h2 className="card-title">See Your Color!</h2>
+                  <p>Choose your preferred paint brand and share your color!</p>
                 </div>
               </div>
           }

@@ -17,6 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Resolve __dirname in ES modules
+//const path = require("path");
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -62,3 +63,15 @@ const startServer = async () => {
 };
 
 startServer();
+
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder (use 'dist' for Vite, 'build' for Create React App)
+  // Adjust the relative path depending on your folder architecture
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
+  });
+}
