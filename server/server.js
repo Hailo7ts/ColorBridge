@@ -66,7 +66,7 @@ startServer();
 
 
 // Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
+/*if (process.env.NODE_ENV === 'production') {
   // Set static folder (use 'dist' for Vite, 'build' for Create React App)
   // Adjust the relative path depending on your folder architecture
   app.use(express.static(path.join(__dirname, '../client/dist')));
@@ -74,4 +74,4 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
   });
-}
+}*/
