@@ -24,6 +24,7 @@ COPY server/ ./
 
 COPY --from=client-build /app/client/dist ./dist
 
+COPY vite.config.js ./
 # ---------- Runtime image ----------
 FROM node:20-alpine AS runtime
 WORKDIR /app/server
