@@ -13,6 +13,8 @@ RUN npm ci
 COPY client/ ./
 RUN npm run build
 
+
+
 # ---------- Build server (Express) ----------
 FROM base AS server-build
 WORKDIR /app/server
@@ -24,7 +26,7 @@ COPY server/ ./
 
 COPY --from=client-build /app/client/dist ./dist
 
-COPY vite.config.js ./
+
 # ---------- Runtime image ----------
 FROM node:20-alpine AS runtime
 WORKDIR /app/server
