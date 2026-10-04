@@ -7,7 +7,7 @@ const HomePage = () => {
 	return (  
 		<div>      		
 			
-			<div className="hero bg-base-200 min-h-screen bg-[#203162] text-[#abd7ff]">
+			<div className="hero min-h-screen bg-[#203162] text-[#abd7ff]">
 			  <div className="hero-content text-center">
 			    <div className="max-w-md">
 			      <h1 className="text-5xl font-bold text-[#abd7ff]">PAINT THEORY</h1>
@@ -22,22 +22,7 @@ const HomePage = () => {
 			    </div>
 			  </div>
 			</div>
-    
-    	
-        	<div class="hero bg-base-200 min-h-screen">
-        	    <div class="hero-content flex-col lg:flex-row-reverse">
-        	        <img
-        	          src="../images/info-main.png"
-        	          class="max-w-sm rounded-lg shadow-2xl" />
-        	        <div>
-        	            <h1 class="text-5xl font-bold">INTRODUCTION</h1>
-        	            <p class="py-6">
-        	              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-        	              quasi. In deleniti eaque aut repudiandae et a id nisi.
-        	            </p>                    
-        	        </div>
-        	    </div>
-        	</div>      
+        	  
     	</div>
 	);
 };

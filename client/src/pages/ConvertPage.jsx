@@ -196,93 +196,93 @@ const ConvertPage = () => {
           </div>
 
           {/* Display Converted Color */}
-        <div className="flex justify-evenly mt-10 mb-10"> 
-          {/*if color hex empty then display default card color*/}
-          {color.hex === "" &&
-              <div className="card lg:card-side w-1/3 bg-base-100 bg-[#a84d69] shadow-sm justify-center">
-                <div className="card-body">
-                  <h2 className="card-title">See Your Color!</h2>
-                  <p>Choose your preferred paint brand and share your color!</p>
-                </div>
-              </div>
-          }
+            <div className="flex justify-evenly mt-10 mb-10"> 
+              {/*if color hex empty then display default card color*/}
+                {color.hex === "" &&
+                    <div className="card lg:card-side w-1/3 bg-[#E0BC00] shadow-sm justify-center">
+                      <div className="card-body">
+                        <h2 className="card-title">See Your Color!</h2>
+                        <p>Choose your preferred paint brand and share your color!</p>
+                      </div>
+                    </div>
+                }
 
-          {/*if color hex NOT empty then display input color info forcard color*/}
-          {color.hex != "" &&
-          <div className="card lg:card-side w-1/3 bg-base-100  shadow-sm justify-center"
-          style={{ backgroundColor: color.hex }}>
-                <div className="card-body">
-                  <h2 className="card-title">My Color!</h2>
-                  <p>{color.hex}</p>
-                </div>
-              </div>
-          }
-        </div>
+                {/*if color hex NOT empty then display input color info forcard color*/}
+                {color.hex != "" &&
+                <div className="card lg:card-side w-1/3 bg-base-100  shadow-sm justify-center"
+                style={{ backgroundColor: color.hex }}>
+                      <div className="card-body">
+                        <h2 className="card-title">My Color!</h2>
+                        <p>{color.hex}</p>
+                      </div>
+                    </div>
+                }
+            </div>
 
-        {/* User Form Inputs */}
-          <div className="flex justify-evenly">           
-            <div className="card lg:card-side w-1/3 shadow-sm justify-center card bg-[#a84d69]">       
-              <div className="card-body">
-                  
+          {/* User Form Inputs */}
+            <div className="flex justify-evenly">           
+              <div className="card lg:card-side w-1/3 shadow-sm  card bg-[#a84d69]">       
+                <div className="card-body">
+
                   <form onSubmit={handleSubmit}>
-                    {/* HEX or RGB */}
-                    {/*<label className="label">Color Value Type
-                      <select required name="select-color-value-type" defaultValue="hex" onChange={handleColorTypeChange}>
-                        <option className="hex" value="hex">HEX</option>
-                        <option className="rgb" value="rgb">RGB</option>
-                      </select>   
-                    </label>      */}       
+                      {/* HEX or RGB */}
+                      {/*<label className="label">Color Value Type
+                        <select required name="select-color-value-type" defaultValue="hex" onChange={handleColorTypeChange}>
+                          <option className="hex" value="hex">HEX</option>
+                          <option className="rgb" value="rgb">RGB</option>
+                        </select>   
+                      </label>      */}       
 
-                    {/* Paint Brands */}
-                    <label className="label">Brand Color
-                      <select required name="select-brand" defaultValue="avery" onChange={handleBrandChange}>
-                      <option value="avery">avery</option>
-                      <option value="behr">behr</option>
-                      <option value="benjamin-moore">benjamin-moore</option>
-                      <option value="colorhouse">colorhouse</option>
-                      <option value="dic">dic</option>
-                      <option value="dunn-edwards">dunn-edwards</option>
-                      <option value="dutch">dutch</option>
-                      <option value="farrow-ball">farrow-ball</option>
-                      <option value="hks">hks</option>
-                      <option value="hl">hl</option>
-                      <option value="ikea">ikea</option>
-                      <option value="kilz">kilz</option>
-                      <option value="kobra">kobra</option>
-                      <option value="mpc">mpc</option>
-                      <option value="neenah">neenah</option>
-                      <option value="ppg">ppg</option>
-                      <option value="ral">ral</option>
-                      <option value="sherwin-williams">Sherwin Williams</option>
-                      <option value="toyo">toyo</option>
-                      <option value="trumatch">trumatch</option>
-                      {/*<option value="valspar">Valspar</option>*/}
-                      <option value="vista">vista</option>
-                      </select>
-                    </label>
+                      {/* Paint Brands */}
+                      <label className="label">Brand Color
+                        <select required name="select-brand" defaultValue="avery" onChange={handleBrandChange}>
+                        <option value="avery">avery</option>
+                        <option value="behr">behr</option>
+                        <option value="benjamin-moore">benjamin-moore</option>
+                        <option value="colorhouse">colorhouse</option>
+                        <option value="dic">dic</option>
+                        <option value="dunn-edwards">dunn-edwards</option>
+                        <option value="dutch">dutch</option>
+                        <option value="farrow-ball">farrow-ball</option>
+                        <option value="hks">hks</option>
+                        <option value="hl">hl</option>
+                        <option value="ikea">ikea</option>
+                        <option value="kilz">kilz</option>
+                        <option value="kobra">kobra</option>
+                        <option value="mpc">mpc</option>
+                        <option value="neenah">neenah</option>
+                        <option value="ppg">ppg</option>
+                        <option value="ral">ral</option>
+                        <option value="sherwin-williams">Sherwin Williams</option>
+                        <option value="toyo">toyo</option>
+                        <option value="trumatch">trumatch</option>
+                        {/*<option value="valspar">Valspar</option>*/}
+                        <option value="vista">vista</option>
+                        </select>
+                      </label>
 
-                    {/* Color Code Input */}
-                    <label className="label">Your Color Code
-                      {/* check if value type is rgb or hex */}
-                      {colorType === "hex" &&
-                        <input type="textarea" name="colorCode" placeholder="#000000" className="input input-bordered" onChange={handleColorChange} required />
-                      } 
-                      
-                      {
-                      colorType === "rgb" &&
-                        <input type="textarea" name="colorCode" placeholder="rgb(255, 255, 255)" className="input input-bordered" onChange={handleColorChange} required />
-                      }
-                      
-                      
-                    </label>
+                      {/* Color Code Input */}
+                      <label className="label">Your Color Code
+                        {/* check if value type is rgb or hex */}
+                        {colorType === "hex" &&
+                          <input type="textarea" name="colorCode" placeholder="#000000" className="input input-bordered" onChange={handleColorChange} required />
+                        } 
 
-                    <button type="submit" className="btn btn-warning" >CONVERT</button>
+                        {
+                        colorType === "rgb" &&
+                          <input type="textarea" name="colorCode" placeholder="rgb(255, 255, 255)" className="input input-bordered" onChange={handleColorChange} required />
+                        }
+
+
+                      </label>
+
+                      <button type="submit" className="btn btn-warning" >CONVERT</button>
                   </form>
                 </div>
+              </div>
             </div>
-          </div>
-             
-            
+                      
+                      
         </div>
     );
 };

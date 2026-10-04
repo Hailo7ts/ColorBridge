@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 const Navbar = () => {
 
 	return (
-		<div className="h-[5rem] shadow-md navbar bg-base-100 bg-[#203162]">
+		<div className="h-[5rem] shadow-md navbar bg-[#203162]">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
