@@ -1,7 +1,5 @@
 import { useEffect, useState, useId } from "react";
 import { Link } from "react-router-dom";
-import { useProductStore } from "../store/product";
-import ProductCard from "../components/ProductCard";
 
 
 
